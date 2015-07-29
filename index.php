@@ -6,12 +6,8 @@ error_reporting(0);
 
 ################################################################################
 
-require_once 'wjr' . DIRECTORY_SEPARATOR . 'functions.php';
-
-################################################################################
-
-$formulario = array_get($_POST, 'formulario');
-$quantidade = array_get($_POST, 'quantidade');
+$formulario = filter_input(INPUT_POST, 'formulario');
+$quantidade = filter_input(INPUT_POST, 'quantidade');
 $creditos   = null;
 $pontos     = null;
 $media      = null;
@@ -32,7 +28,7 @@ if (intval($quantidade) > 0)
     {
         $lbl = 'lblCredito' . ($i + 1);
         $txt = 'txtCredito' . ($i + 1);
-        $val = floatval(str_replace(',', '.', array_get($_POST, $txt)));
+        $val = floatval(str_replace(',', '.', filter_input(INPUT_POST, $txt)));
         
         $creditos = array_merge($creditos, array(
             '<label id="' . $lbl . '">' . ($i + 1) . 'º crédito:</label>',
